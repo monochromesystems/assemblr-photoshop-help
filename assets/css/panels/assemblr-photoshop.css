@@ -1,0 +1,50 @@
+/* Assemblr for Photoshop's panel (panel/assemblr-photoshop/*.njk, src/_lib/assemblr-photoshop-panel.js): main.ts's
+   .pt-* pieces, the house look it shares with Automated Assemblr, and what only this panel draws (catalague-producer
+   src/ui/house.css): the product's name box, the layer strips with the cans' thumbnails, the Products rows and an
+   artboard's divider, the settings pop-up's ticks and the status line under the panel. */
+.ap-name { flex: none; border-color: #d5d5d5; font-weight: 500; }
+/* Two buttons with a mark each: room between them for the second mark. */
+.ap-btns { gap: 14px; }
+
+/* A product's layers: a thumbnail a tile, the + tile at the end. A layer turned off is dimmed and outlined in red, with
+   its green + always showing. */
+.ap-strip { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
+.ap-thumb { position: relative; display: grid; place-items: center; min-width: 0; aspect-ratio: 1; border-radius: 5px; background: #f0f0f0; }
+.ap-thumb img { position: absolute; inset: 8%; display: block; width: 84%; height: 84%; object-fit: contain; }
+.ap-thumb.is-off { outline: 2px solid #e05050; outline-offset: -2px; }
+.ap-thumb.is-off img { opacity: 0.45; }
+.ap-on { position: absolute; top: 2px; right: 2px; width: 16px; height: 16px; border-radius: 50%; background: #17875a; font-size: 13px; font-weight: 600; line-height: 15px; text-align: center; color: #fff; }
+.ap-thumb-add { border: 1px dashed #ccc; background: #f7f7f7; font-size: 20px; color: #999; }
+.ap-strip > .pt-in { display: block; }
+.ap-strip > .pt-in > .ap-thumb { width: 100%; }
+/* The + tile's mark on the middle of its outer edge: clear of the thumbnail beside it and of Disassemble above. */
+.ap-strip > .pt-in > .pt-mark { top: 50%; left: auto; right: -9.5px; margin-top: -9.5px; }
+
+/* Products: a row a product, its strip under it; an artboard's divider between the artboards. */
+.ap-product { display: flex; flex-direction: column; gap: 7px; padding: 8px 0 9px; border-top: 1px solid #eee; }
+.ap-prow { display: flex; align-items: center; gap: 8px; min-width: 0; font-size: 13px; }
+.ap-pname { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-decoration: underline; text-decoration-color: #c4c4c4; text-underline-offset: 2px; }
+.ap-prow > .pt-hot:first-child { flex: 1; min-width: 0; }
+.ap-prow > .pt-hot:first-child > .ap-pname { flex: 1; }
+/* The name's mark in the gutter beside it; Disassemble's over it, where the row above is empty. */
+.ap-prow > .pt-in:first-child > .pt-mark { top: 50%; left: -27px; margin-top: -9.5px; }
+.ap-prow > .pt-in:last-child > .pt-mark { top: -23px; left: 50%; margin-left: -9.5px; }
+.ap-board { margin-top: 6px; padding: 4px 9px 5px; border-radius: 4px; background: #f3f3f3; font-size: 12px; font-weight: 600; color: #333; }
+
+/* Settings: the pop-up's ticks, and the line under the restack one. */
+.ap-set { gap: 13px; }
+.ap-check { display: flex; align-items: center; gap: 9px; font-size: 13px; }
+.ap-setnote { margin-left: 24px !important; font-size: 12px; line-height: 1.4; color: #888; }
+/* The status line at the panel's foot: the dot green with Ready, the artboard in focus, the settings that are on. */
+.ap-status { display: flex; align-items: center; gap: 7px; margin-top: 14px; padding: 10px 20px 10px 36px; border-radius: 14px; background: #fff; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.05); font-size: 12.5px; color: #777; }
+.ap-dot { flex: none; width: 7px; height: 7px; border-radius: 50%; background: #22a06b; }
+.ap-status-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ap-status > .pt-hot { margin-left: auto; padding: 0 2px; }
+.ap-status-on { white-space: nowrap; color: #555; }
+.ap-status > .pt-in > .pt-mark { top: 50%; left: -27px; margin-top: -9.5px; }
+
+@media (max-width: 734px) {
+  .ap-strip { gap: 5px; }
+  .ap-prow > .pt-in:first-child > .pt-mark { left: -24px; }
+  .ap-status { padding: 9px 14px 9px 30px; }
+}
